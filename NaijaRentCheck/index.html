@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- BASIC META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NaijaRentCheck helps Nigerian tenants calculate rent increases, understand fairness, and know their rights." />
+  <meta name="keywords" content="Nigeria rent increase calculator, rent check Nigeria, tenant rights Nigeria, rent hike calculator" />
+  <meta name="author" content="NaijaRentCheck" />
+
+  <!-- SOCIAL / SEO -->
+  <meta property="og:title" content="NaijaRentCheck – Nigerian Rent Increase Calculator" />
+  <meta property="og:description" content="Check if a rent increase is fair in Nigeria. Free, fast, and informative." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/logo.png" />
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+  <!-- TITLE -->
+  <title>NaijaRentCheck | Nigerian Rent Increase Calculator</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="theme-light">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="NaijaRentCheck logo" class="logo" />
+      <h1>NaijaRentCheck</h1>
+    </div>
+
+    <!-- THEME SWITCHER -->
+    <div class="theme-switcher">
+      <button data-theme="light">Light</button>
+      <button data-theme="dark">Dark</button>
+      <button data-theme="naija">Naija</button>
+    </div>
+  </header>
+
+  <!-- ================= TOP AD ================= -->
+  <section class="ad ad-top" aria-label="Advertisement">
+    <p>Advertisement Space (Top Banner)</p>
+  </section>
+
+  <!-- ================= MAIN ================= -->
+  <main class="container">
+
+    <!-- ===== CALCULATOR ===== -->
+    <section class="calculator">
+      <h2>Rent Increase Calculator (Nigeria)</h2>
+
+      <form id="rentForm" novalidate>
+
+        <!-- CITY / STATE -->
+<div class="form-group">
+    <label for="city">City / State (optional)</label>
+    <input
+      type="text"
+      id="city"
+      placeholder="e.g. Ikeja, Lagos or Awka, Anambra"
+    />
+  </div>
+  
+      <!-- ACCOMMODATION TYPE -->
+<div class="form-group">
+    <label for="accommodation">Type of Accommodation</label>
+    <select id="accommodation" required>
+      <option value="">Select type</option>
+      <option>Self-contained</option>
+      <option>1 Bedroom Flat</option>
+      <option>2 Bedroom Flat</option>
+      <option>3 Bedroom Flat</option>
+      <option>Duplex</option>
+      <option>Shop / Office Space</option>
+      <option value="other">Other (specify)</option>
+    </select>
+  </div>
+  
+  <div class="form-group" id="customAccommodationGroup" hidden>
+    <label for="customAccommodation">Specify Accommodation Type</label>
+    <input type="text" id="customAccommodation" placeholder="e.g. Shared apartment" />
+  </div>
+  
+
+        <!-- CURRENT RENT -->
+        <div class="form-group">
+          <label for="currentRent">Current Rent (₦)</label>
+          <input type="number" id="currentRent" placeholder="e.g. 500000" required />
+        </div>
+
+        <!-- NEW RENT -->
+        <div class="form-group">
+          <label for="newRent">Proposed New Rent (₦)</label>
+          <input type="number" id="newRent" placeholder="e.g. 650000" required />
+        </div>
+
+        <!-- PAYMENT FREQUENCY -->
+        <div class="form-group">
+          <label for="frequency">Payment Frequency</label>
+          <select id="frequency">
+            <option value="yearly">Yearly (default)</option>
+            <option value="monthly">Monthly</option>
+            <option value="quarterly">Quarterly</option>
+          </select>
+        </div>
+
+        <!-- TENANCY DURATION -->
+        <div class="form-group">
+          <label for="duration">Tenancy Duration (years)</label>
+          <input type="number" id="duration" min="1" placeholder="e.g. 1" required />
+        </div>
+
+        <!-- LEASE DATES -->
+        <div class="form-group">
+          <label for="leaseStart">Lease Start Date (optional)</label>
+          <input type="date" id="leaseStart" />
+        </div>
+
+        <div class="form-group">
+          <label for="leaseEnd">Lease End Date (optional)</label>
+          <input type="date" id="leaseEnd" />
+        </div>
+
+        <!-- NEGOTIATION INTENT -->
+        <div class="form-group checkbox-group" role="group">
+
+          <input type="checkbox" id="negotiate" />
+          <label for="negotiate">I want to negotiate this increase</label>
+        </div>
+
+        <button type="submit" class="btn-primary" aria-label="Check rent increase calculation">
+            Check Rent Increase
+          </button>
+          
+          <button type="button" id="resetBtn" class="btn-primary" style="background:#6b7280;margin-top:0.5rem;">
+            Reset
+          </button>
+          
+          
+      </form>
+
+      <!-- WARNINGS -->
+      <div id="warning" class="warning" aria-live="polite"></div>
+
+      <!-- RESULTS -->
+      <div id="results" class="results" hidden>
+        <h3>Increase Summary</h3>
+        <ul>
+          <li><strong>Percentage Increase:</strong> <span id="percentIncrease"></span></li>
+          <li><strong>Monthly Difference:</strong> ₦<span id="monthlyDiff"></span></li>
+          <li><strong>Yearly Difference:</strong> ₦<span id="yearlyDiff"></span></li>
+        </ul>
+
+        <div id="fairness" class="fairness"></div>
+      </div>
+    </section>
+
+    <!-- ================= MID AD ================= -->
+    <section class="ad ad-mid" aria-label="Advertisement">
+      <p>Advertisement Space (Mid Page)</p>
+    </section>
+
+    <!-- ===== EDUCATIONAL CONTENT ===== -->
+    <section class="content">
+      <h2>Rent Increase Rules in Nigeria</h2>
+      <p>
+        Rent increases in Nigeria must be reasonable, communicated properly,
+        and consistent with tenancy agreements. Sudden or extreme increases
+        can often be challenged or negotiated.
+      </p>
+
+      <h2>Tenant Rights Explained</h2>
+      <ul>
+        <li>Landlords must give proper notice before increasing rent.</li>
+        <li>Rent cannot be increased mid-lease without agreement.</li>
+        <li>Negotiation is common and encouraged.</li>
+        <li>Local practices may vary by city.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>Is there a legal limit to rent increase in Nigeria?</summary>
+        <p>No nationwide cap exists, but increases must be reasonable.</p>
+      </details>
+
+      <details>
+        <summary>Can a landlord increase rent before my lease ends?</summary>
+        <p>Usually no, unless your agreement allows it.</p>
+      </details>
+
+      <details>
+        <summary>Does NaijaRentCheck provide legal advice?</summary>
+        <p>No. This tool is for informational purposes only.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER AD ================= -->
+  <section class="ad ad-footer" aria-label="Advertisement">
+    <p>Advertisement Space (Footer)</p>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <p>© <span id="year"></span> NaijaRentCheck. Informational use only.</p>
+  </footer>
+
+  <!-- ================= JS ================= -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
